@@ -1,6 +1,6 @@
 const mongoose= require('mongoose');
 
-const mongoURI= "mongodb://localhost:27017/?readPreference=primary&appName=MongoDB+Compass&directConnection=true&tls=false"
+const mongoURI= "mongodb://localhost:27017/skyvault?readPreference=primary&appName=MongoDB+Compass&directConnection=true&tls=false"
 
 const connectToMongo=()=>{
     mongoose.connect(mongoURI);
