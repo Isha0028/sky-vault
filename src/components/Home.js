@@ -3,11 +3,12 @@ import Notes from "./Notes";
 import { NoteState } from "../contextApi/notes/NotesState";
 
 
-const Home = () => {
+const Home = (props) => {
+  const {showAlert}=props
   return (
     <div>
       <NoteState>
-      <Notes />
+      <Notes showAlert={showAlert} />
       </NoteState>
     
     </div>

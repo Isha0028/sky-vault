@@ -1,7 +1,7 @@
 import { React, useContext, useState } from "react";
 import NoteContext from "../contextApi/notes/NotesContext";
 
-const AddNote = () => {
+const AddNote = (props) => {
   const context = useContext(NoteContext);
   const { addNotes } = context;
 
@@ -10,6 +10,8 @@ const AddNote = () => {
   const handleClick = (e) => {
     e.preventDefault();
     addNotes(note.title,note.description,note.tag);
+    setNotes({ title: "", description: "", tag:"" });
+    props.showAlert("Note added successfully!!","success")
   };
   const onChange = (e) => {
     setNotes({ ...note, [e.target.name]: e.target.value });
@@ -20,7 +22,7 @@ const AddNote = () => {
       <h2>Add a Note</h2>
 
       <div className="container my-3">
-        <form>
+        <form  onSubmit={handleClick}>
           <div className="form-group my-3">
             <label htmlFor="Input1">Title</label>
             <input
@@ -28,7 +30,9 @@ const AddNote = () => {
               className="form-control"
               id="title"
               name="title"
+              value={note.title}
               onChange={onChange}
+              minLength={3} required
             />
           </div>
           <div className="form-group my-3">
@@ -38,7 +42,9 @@ const AddNote = () => {
               className="form-control"
               id="description"
               name="description"
+              value={note.description}
               onChange={onChange}
+              minLength={8} required
             />
           </div>
           <div className="form-group my-3">
@@ -48,6 +54,7 @@ const AddNote = () => {
               className="form-control"
               id="tag"
               name="tag"
+              value={note.tag}
               onChange={onChange}
             />
           </div>
@@ -55,7 +62,7 @@ const AddNote = () => {
           <button
             type="submit"
             className="btn btn-primary my-3"
-            onClick={handleClick}
+           
           >
             Add Note
           </button>

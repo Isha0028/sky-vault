@@ -18,17 +18,18 @@ router.post(
     body("password",'Password must be of atleast 8 characters').isLength({ min: 8 })
   ],
   async(req, res) => {
+    let success=false;
     //If there are errors ,then return bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-     return res.status(400).json({errors: errors.array()});
+     return res.status(400).json({success, errors: errors.array()});
     }
 
     //Check whether the user with same email already exist 
   try{
       let user= await User.findOne({email: req.body.email});
       if(user){
-       return res.status(400).json({ errors: 'Sorry , a user with this email already exist' });
+       return res.status(400).json({success, errors: 'Sorry , a user with this email already exist' });
       }
     
   //create a user
@@ -48,8 +49,9 @@ router.post(
 
    //creating a token when user login, so that another time he login then we can recognize. 
    //and also using id as from id it is easier and faster to discover or retrieve data.
+   success=true;
       const authtoken= jwt.sign(data, JWT_SECRET);
-      res.json({authtoken});
+      res.json({success,authtoken});
     
       
     }
@@ -72,6 +74,7 @@ router.post(
     body("password", 'Password cannot be blank').exists()
   ],
   async(req, res) => {
+    let success=false;
     //If there are errors ,then return bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -82,12 +85,14 @@ router.post(
   try {
  let user= await User.findOne({email});
  if(!user){
-  return res.status(400).json({error:'Please try to login with correct credentials'});
+  success=false;
+  return res.status(400).json({success,error:'Please try to login with correct credentials'});
  }
 
  const passwordCompare= await bcrypt.compare(password,user.password);
  if(!passwordCompare){
-  return res.status(400).json({error:'Please try to login with correct credentials'});
+  success=false;
+  return res.status(400).json({success,error:'Please try to login with correct credentials'});
  }
 
 
@@ -95,8 +100,9 @@ router.post(
   user:{
     id:user.id
   }}
+  success=true;
   const authtoken= jwt.sign(data, JWT_SECRET);
-   res.json({authtoken});
+   res.json({success,authtoken});
 }
   
   catch(error){
