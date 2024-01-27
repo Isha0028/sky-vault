@@ -35,7 +35,7 @@ const Signup = (props) => {
   };
   return (
     <div className="container">
-      <h2 className="my-3">Create new account</h2>
+      <h2 className="my-3">Create your new account</h2>
       <form onSubmit={handleClick}>
         <div className="form-group my-3">
           <label htmlFor="name">Name</label>
@@ -89,7 +89,7 @@ const Signup = (props) => {
             onChange={onChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary my-3">
+        <button type="submit" className="btn btn-primary btn-dark my-3">
           Submit
         </button>
       </form>
