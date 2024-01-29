@@ -2,10 +2,14 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const Signup = (props) => {
   let navigate = useNavigate();
-  const [credentials, setCredentials] = useState({name:"", email: "", password: "", cpassword:"" });
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+    cpassword: "",
+  });
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -13,24 +17,27 @@ const Signup = (props) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const {name, email , password} = credentials;
+    const { name, email, password } = credentials;
     const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-       name, email, password
+        name,
+        email,
+        password,
       }),
     });
     const json = await response.json();
     console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
+      localStorage.setItem("user", credentials.name);
       navigate("/");
-      props.showAlert("SignUp successfull!!","success")
+      props.showAlert("SignUp successfull!!", "success");
     } else {
-      props.showAlert("Please enter with correct credentials ","danger")
+      props.showAlert("Please enter with correct credentials ", "danger");
     }
   };
   return (
@@ -94,7 +101,7 @@ const Signup = (props) => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

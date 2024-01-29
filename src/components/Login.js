@@ -5,7 +5,7 @@ import "./login.css";
 
 const Login = (props) => {
   let navigate = useNavigate();
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [credentials, setCredentials] = useState({name:"", email: "", password: "" });
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -19,6 +19,7 @@ const Login = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name:credentials.name,
         email: credentials.email,
         password: credentials.password,
       }),
@@ -27,6 +28,7 @@ const Login = (props) => {
     console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
+      localStorage.setItem("user", credentials.name);
       navigate("/");
       props.showAlert("Login successfull!!", "success");
     } else {
@@ -51,6 +53,19 @@ const Login = (props) => {
                   <h1 className="text-center  mx-3 mb-10">Login to Skyvault</h1>
                 </div>
 
+                {/* <!-- username-input --> */}
+                <div className="form-outline mb-4">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={credentials.name}
+                    required
+                    onChange={onChange}
+                    className="form-control form-control-lg "
+                    placeholder="Enter your username"
+                  />
+                </div>
                 {/* <!-- Email input --> */}
                 <div className="form-outline mb-4">
                   <input

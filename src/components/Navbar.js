@@ -1,41 +1,125 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "./navbar.css";
 
 const Navbar = () => {
   let navigate = useNavigate();
-  const handlelogout =()=>{
-    localStorage.removeItem('token');
-    navigate('/login')
-  }
+  const handlelogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
-  let location= useLocation();
+  let location = useLocation();
   return (
     <div>
       <nav className="navbar navbar-expand-lg  navbar-dark bg-dark">
-  <div className="container-fluid">
-    <Link className="navbar-brand" to="/">SkyVault</Link>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <Link className={`nav-link ${location.pathname==="/"?"active": ""}`} aria-current="page" to="/">Home</Link>
-        </li>
-        <li className="nav-item">
-          <Link className={`nav-link ${location.pathname==="/about"?"active": ""}`} to="/about">About</Link>
-        </li>
-      </ul> 
-     {!localStorage.getItem('token')? <div className="d-flex">
-      <Link className="btn btn-primary btn-info mx-2" to="/login" role="button">Login</Link>
-      <Link className="btn btn-primary btn-info mx-1" to="/signUp" role="button">Sign Up</Link>
-      </div> : <button onClick={handlelogout} className='btn btn-primary btn-info'>Logout</button>}
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">
+            SkyVault
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${
+                    location.pathname === "/" ? "active" : ""
+                  }`}
+                  aria-current="page"
+                  to="/"
+                >
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${
+                    location.pathname === "/about" ? "active" : ""
+                  }`}
+                  to="/about"
+                >
+                  About
+                </Link>
+              </li>
+            </ul>
+            {!localStorage.getItem("token") ? (
+              <div className="d-flex">
+                <Link
+                  className="btn btn-primary btn-info mx-2"
+                  to="/login"
+                  role="button"
+                >
+                  Login
+                </Link>
+                <Link
+                  className="btn btn-primary btn-info mx-1"
+                  to="/signUp"
+                  role="button"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            ) : (
+              <ul className="navbar-nav ms-auto profile-menu">
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link  d-flex align-items-center "
+                    href="/"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <h6 className="mx-2">{localStorage.getItem("user")}</h6>
+                    <div className="profile-pic">
+                      <img
+                        src="https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0="
+                        alt="Profile"
+                        className="img-circle"
+                      />
+                    </div>
+                  </a>
+                  <ul
+                    className="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <li>
+                      <a className="dropdown-item" href="/">
+                        Profile
+                      </a>
+                    </li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a
+                        onClick={handlelogout}
+                        className="dropdown-item"
+                        href="/"
+                      >
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            )}
+          </div>
+        </div>
+      </nav>
     </div>
-  </div>
-</nav>
-    </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
