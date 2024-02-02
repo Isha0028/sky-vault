@@ -1,6 +1,6 @@
 import React from "react";
-import Notes from "./Notes";
 import { NoteState } from "../contextApi/notes/NotesState";
+import AddNote from "./AddNote";
 
 
 const Home = (props) => {
@@ -8,7 +8,7 @@ const Home = (props) => {
   return (
     <div>
       <NoteState>
-      <Notes showAlert={showAlert} />
+      <AddNote showAlert={showAlert} />
       </NoteState>
     
     </div>

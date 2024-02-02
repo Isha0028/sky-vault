@@ -33,20 +33,29 @@ const Navbar = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
-                  className={`nav-link ${
-                    location.pathname === "/" ? "active" : ""
-                  }`}
+                  className={`nav-link ${location.pathname === "/" ? "active" : ""
+                    }`}
                   aria-current="page"
                   to="/"
                 >
                   Home
                 </Link>
               </li>
+              {!localStorage.getItem("token") ? (""):(
               <li className="nav-item">
                 <Link
-                  className={`nav-link ${
-                    location.pathname === "/about" ? "active" : ""
-                  }`}
+                  className={`nav-link ${location.pathname === "/notes" ? "active" : ""
+                    }`}
+                  to="/notes"
+                >
+                  Notes
+                </Link>
+              </li>
+              )}
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${location.pathname === "/about" ? "active" : ""
+                    }`}
                   to="/about"
                 >
                   About
@@ -56,14 +65,14 @@ const Navbar = () => {
             {!localStorage.getItem("token") ? (
               <div className="d-flex">
                 <Link
-                  className="btn btn-primary btn-info mx-2"
+                  className="btn  mx-2"
                   to="/login"
                   role="button"
                 >
                   Login
                 </Link>
                 <Link
-                  className="btn btn-primary btn-info mx-1"
+                  className="btn   mx-1"
                   to="/signUp"
                   role="button"
                 >
@@ -95,9 +104,9 @@ const Navbar = () => {
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <a className="dropdown-item" href="/">
+                      <Link className="dropdown-item" to="/profile">
                         Profile
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <hr className="dropdown-divider" />

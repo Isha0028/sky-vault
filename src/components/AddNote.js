@@ -1,11 +1,24 @@
-import { React, useContext, useState } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import NoteContext from "../contextApi/notes/NotesContext";
+import { useNavigate } from "react-router-dom";
+
 
 const AddNote = (props) => {
   const context = useContext(NoteContext);
   const { addNotes } = context;
-
+  let navigate = useNavigate();
   const [note, setNotes] = useState({ title: "", description: "", tag:"" });
+
+  useEffect(() => {
+    if(localStorage.getItem('token'))
+    {
+      addNotes()
+    }
+    else{
+      navigate("/login")
+    }
+    // eslint-disable-next-line
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -18,10 +31,16 @@ const AddNote = (props) => {
   };
 
   return (
-    <div className="container my-3">
-      <h2>Add a Note</h2>
+    <>
+    <div  className="container my-4 text-center ">
+      <h1>Hi {localStorage.getItem("user")}! Welcome to skyvault</h1>
+      <p>Your Personal Notes on the cloud</p>
+    </div>
+    <div className="container my-3 card mb-3">
+      <h2>Add your notes here-:</h2>
+     
 
-      <div className="container my-3">
+      <div className="container my-2 ">
         <form  onSubmit={handleClick}>
           <div className="form-group my-3">
             <label htmlFor="Input1">Title</label>
@@ -61,7 +80,7 @@ const AddNote = (props) => {
 
           <button
             type="submit"
-            className="btn btn-primary my-3"
+            className="btn  my-3"
            
           >
             Add Note
@@ -69,6 +88,7 @@ const AddNote = (props) => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ import "./login.css";
 
 const Login = (props) => {
   let navigate = useNavigate();
-  const [credentials, setCredentials] = useState({name:"", email: "", password: "" });
+  const [credentials, setCredentials] = useState({name: "", email: "", password: "" });
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -21,7 +21,7 @@ const Login = (props) => {
       body: JSON.stringify({
         name:credentials.name,
         email: credentials.email,
-        password: credentials.password,
+        password: credentials.password
       }),
     });
     const json = await response.json();
@@ -29,6 +29,7 @@ const Login = (props) => {
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
       localStorage.setItem("user", credentials.name);
+      localStorage.setItem("email", credentials.email);
       navigate("/");
       props.showAlert("Login successfull!!", "success");
     } else {
@@ -100,7 +101,7 @@ const Login = (props) => {
                 <div className="text-center text-lg-start mt-3 pt-2">
                   <button
                     type="submit"
-                    className="btn btn-primary btn-dark"
+                    className="btn  "
                     style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" }}
                   >
                     Login

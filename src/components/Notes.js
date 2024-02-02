@@ -1,7 +1,6 @@
 import { React, useContext, useRef } from "react";
 import NoteContext from "../contextApi/notes/NotesContext";
 import Noteitem from "./Noteitem";
-import AddNote from "./AddNote";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -41,7 +40,6 @@ const Notes = (props) => {
 
   return (
     <>
-      <AddNote showAlert={props.showAlert} />
      
       <button
       ref={ref}
@@ -129,10 +127,12 @@ const Notes = (props) => {
           </div>
         </div>
       </div>
-      
+      <div  className="container my-3 text-center ">
+      <h1>Your Notes here</h1>
+    </div>
       <div className="row my-3">
-        <h2>Your Notes</h2>
-        <div className="container">
+       
+        <div className="container text-center">
         {notes.length===0 && 'No Notes to display'}
         </div>
         {notes.map((note) => {
