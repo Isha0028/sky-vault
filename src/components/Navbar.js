@@ -9,7 +9,7 @@ const Navbar = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-  const profileImage = localStorage.getItem("profileImage");
+ 
   let location = useLocation();
   return (
     <div>
@@ -93,7 +93,7 @@ const Navbar = () => {
                     <h6 className="mx-2">{localStorage.getItem("user")}</h6>
                     <div className="profile-pic1">
                       <img
-                       src={profileImage} alt="Profile" id="navbarImage"
+                       src={localStorage.getItem("profileImage")} alt="Profile" id="navbarImage"
                         className="img-circle"
                       />
                     </div>
