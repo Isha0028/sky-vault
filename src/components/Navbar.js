@@ -93,7 +93,7 @@ const Navbar = () => {
                     <h6 className="mx-1">{localStorage.getItem("user")}</h6>
                     <div className="profile-pic1">
                       <img
-                        src={localStorage.getItem("profileImage") && "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} alt="" id="navbarImage"
+                        src={localStorage.getItem("profileImage") || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} alt="" id="navbarImage"
                         className="img-circle"
                       />
                     </div> 

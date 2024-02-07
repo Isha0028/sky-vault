@@ -34,7 +34,7 @@ const AddNote = (props) => {
     <>
     <div  className="container my-4 text-center ">
       <h1>Hi {localStorage.getItem("user")}! Welcome to skyvault</h1>
-      <p>Your Personal Notes on the cloud</p>
+      <p>Add your personal notes on the cloud</p>
     </div>
     <div className="container my-3 card mb-3">
       <h2>Add your notes here-:</h2>
@@ -75,7 +75,6 @@ const AddNote = (props) => {
               name="tag"
               value={note.tag}
               onChange={onChange}
-              minLength={3} required
             />
           </div>
 

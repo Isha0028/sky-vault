@@ -21,6 +21,9 @@ const NoteState = (props) => {
   };
   //Add notes
   const addNotes = async (title, description, tag) => {
+    if (!title || !description) {
+      return;
+    }
     //TODO: API CALL
     const response = await fetch(`${host}/api/notes/addnotes`, {
       method: "POST",

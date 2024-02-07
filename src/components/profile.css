@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 65vh; /* This ensures the container takes the full height of the viewport */
+  height: 50vh; /* This ensures the container takes the full height of the viewport */
 }
 .card {
     margin-top: 2em;

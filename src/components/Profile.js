@@ -28,8 +28,11 @@ const Profile = () => {
   };
 
   return (
+    <div className='container text-center'>
+      <h1>Your Personal Details</h1>
+      <p>Tap on image to change </p>
     <div className='container center'>
-      <div className="card text-center" style={{ width: "18rem" }}>
+      <div className="card text-center" style={{ width: "27rem" }}>
         <div className="profile-pic">
           <label className="-label" htmlFor="file">
             <span className="glyphicon glyphicon-camera"></span>
@@ -43,6 +46,7 @@ const Profile = () => {
           <h5 className="card-text">{localStorage.getItem("email")}</h5>
         </div>
       </div>
+    </div>
     </div>
   );
 }
