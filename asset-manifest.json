@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/sky-vault/static/css/main.e483ec4d.css",
+    "main.js": "/sky-vault/static/js/main.f4b5d1da.js",
+    "index.html": "/sky-vault/index.html",
+    "main.e483ec4d.css.map": "/sky-vault/static/css/main.e483ec4d.css.map",
+    "main.f4b5d1da.js.map": "/sky-vault/static/js/main.f4b5d1da.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e483ec4d.css",
+    "static/js/main.f4b5d1da.js"
+  ]
+}
