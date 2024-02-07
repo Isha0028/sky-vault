@@ -5,14 +5,13 @@ const Profile = () => {
   useEffect(() => {
     // Fetch the profile image from localStorage when the component mounts
     const profileImage = localStorage.getItem("profileImage");
+  if(profileImage){
+    // Set the image source based on whether it exists in localStorage
+    document.getElementById("output").src = profileImage;}
 
-    // If profileImage exists, set it as the source; otherwise, set a default image
-    if (profileImage) {
-      document.getElementById("output").src = profileImage;
-    } else {
-      // Set a default image path if no profile image is found
-      document.getElementById("output").src = "public/default-profile.jpg";
-    }
+  else{
+    document.getElementById("output").src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+  }  
   }, []);
 
   var loadFile = function (event) {
@@ -37,7 +36,7 @@ const Profile = () => {
             <span>Change Image</span>
           </label>
           <input id="file" type="file" onChange={loadFile} />
-          <img src="public/default-profile.jpg" alt='icon' id="output" width="200" />
+          <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt='icon' id="output" width="200" />
         </div>
         <div className="card-body">
           <h3 className="card-title">{localStorage.getItem("user")}</h3>

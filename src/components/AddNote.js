@@ -75,6 +75,7 @@ const AddNote = (props) => {
               name="tag"
               value={note.tag}
               onChange={onChange}
+              minLength={3} required
             />
           </div>
 
